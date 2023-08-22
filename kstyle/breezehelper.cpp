@@ -6,6 +6,7 @@
  */
 
 #include "breezehelper.h"
+#include <qcolor.h>
 
 #if KLASSY_STYLE_DEBUG_MODE
 #include "setqdebug_logging.h"
@@ -138,7 +139,8 @@ QColor transparentize(const QColor &color, qreal amount)
 //____________________________________________________________________
 QColor Helper::frameOutlineColor(const QPalette &palette, bool mouseOver, bool hasFocus, qreal opacity, AnimationMode mode) const
 {
-    QColor outline(KColorUtils::mix(palette.color(QPalette::Window), palette.color(QPalette::WindowText), 0.25));
+    // Modify this to change color of frames!
+    QColor outline(75, 75, 75);
 
     // focus takes precedence over hover
     if (mode == AnimationFocus) {
@@ -1331,7 +1333,9 @@ void Helper::renderTabBarTab(QPainter *painter,
         } else {
             bgBrush = frameBackgroundColor(palette);
         }
-        QColor penBrush = KColorUtils::mix(bgBrush, palette.color(QPalette::WindowText), 0.25);
+        QColor penBrush = frameOutlineColor(palette.color(QPalette::WindowText));
+
+        // KColorUtils::mix(bgBrush, palette.color(QPalette::WindowText), 0.25);
         painter->setBrush(bgBrush);
         painter->setPen(QPen(penBrush, PenWidth::Frame));
         QRectF highlightRect = frameRect;
@@ -1532,7 +1536,7 @@ void Helper::renderDecorationButton(QPainter *painter,
     } else {
         iconRenderer = RenderDecorationButtonIcon18By18::factory(decorationConfig(), painter, true);
     }
-    
+
     switch (buttonType) {
     case ButtonClose: {
         iconRenderer->renderCloseIcon();
