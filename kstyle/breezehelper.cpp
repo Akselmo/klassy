@@ -579,7 +579,7 @@ void Helper::renderMenuFrame(QPainter *painter, const QRect &rect, const QColor 
         painter->setRenderHint(QPainter::Antialiasing);
         QRectF frameRect(rect);
         // Context menu radius
-        qreal radius(frameRadius(PenWidth::NoPen));
+        qreal radius(qMax(4 - (0.5 * PenWidth::NoPen), 0.0));
 
         if (isTopMenu) {
             frameRect.adjust(0, -radius, 0, 0);
