@@ -55,6 +55,11 @@ public:
     //* add alpha channel multiplier to color
     QColor alphaColor(QColor color, qreal alpha) const;
 
+    QColor customFrameColor() const
+    {
+        return QColor(59, 59, 59);
+    }
+
     //* mouse over color
     QColor hoverColor(const QPalette &palette) const
     {
