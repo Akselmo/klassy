@@ -62,7 +62,7 @@ public:
 
     QColor customContextMenuOutlineColor() const
     {
-        return QColor(0, 0, 0);
+        return QColor(5, 5, 5);
     }
 
     //* mouse over color
