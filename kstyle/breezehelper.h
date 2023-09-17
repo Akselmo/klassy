@@ -55,9 +55,11 @@ public:
     //* add alpha channel multiplier to color
     QColor alphaColor(QColor color, qreal alpha) const;
 
-    QColor customFrameColor() const
+    QColor customFrameColor(const QPalette &palette) const
     {
-        return QColor(59, 59, 59);
+        auto color = KStatefulBrush(KColorScheme::View, KColorScheme::NormalText).brush(palette).color();
+        color.setAlpha(33);
+        return color;
     }
 
     QColor customContextMenuOutlineColor() const

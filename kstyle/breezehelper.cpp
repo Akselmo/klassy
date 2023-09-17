@@ -140,7 +140,7 @@ QColor transparentize(const QColor &color, qreal amount)
 QColor Helper::frameOutlineColor(const QPalette &palette, bool mouseOver, bool hasFocus, qreal opacity, AnimationMode mode) const
 {
     // Modify this to change color of frames!
-    QColor outline = customFrameColor();
+    QColor outline = customFrameColor(palette);
 
     // focus takes precedence over hover
     if (mode == AnimationFocus) {
