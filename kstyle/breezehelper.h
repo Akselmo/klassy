@@ -21,6 +21,8 @@
 #include <QPainterPath>
 #include <QToolBar>
 #include <QWidget>
+#include <kcolorscheme.h>
+#include <kstatefulbrush.h>
 
 namespace Breeze
 {
@@ -52,6 +54,11 @@ public:
     //*@name color utilities
     //@{
 
+    QColor customRightClickMenuColor(const QPalette &palette) const
+    {
+        auto color = KStatefulBrush(KColorScheme::Button, KColorScheme::NormalBackground).brush(palette).color();
+        return color;
+    }
     //* add alpha channel multiplier to color
     QColor alphaColor(QColor color, qreal alpha) const;
 

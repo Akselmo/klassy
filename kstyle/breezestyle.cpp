@@ -4314,7 +4314,8 @@ bool Style::drawPanelMenuPrimitive(const QStyleOption *option, QPainter *painter
     const bool hasAlpha(_helper->hasAlphaChannel(widget));
     const bool isTopMenu(widget != nullptr && widget->property(PropertyNames::isTopMenu).toBool());
     auto background(_helper->frameBackgroundColor(palette));
-    auto outline(_helper->frameOutlineColor(palette));
+    // Right click menu outline color
+    auto outline(_helper->customRightClickMenuColor(palette));
 
     painter->save();
 
@@ -4323,7 +4324,7 @@ bool Style::drawPanelMenuPrimitive(const QStyleOption *option, QPainter *painter
             painter->setCompositionMode(QPainter::CompositionMode_Source);
         }
         background.setAlphaF(StyleConfigData::menuOpacity() / 100.0);
-        outline = _helper->alphaColor(palette.color(QPalette::WindowText), 0.25);
+        outline = _helper->alphaColor(_helper->customRightClickMenuColor(palette), 0.25);
     }
 
     _helper->renderMenuFrame(painter, option->rect, background, outline, hasAlpha, isTopMenu);
