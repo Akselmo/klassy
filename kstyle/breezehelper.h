@@ -62,11 +62,6 @@ public:
         return color;
     }
 
-    QColor customContextMenuOutlineColor() const
-    {
-        return QColor(5, 5, 5);
-    }
-
     //* mouse over color
     QColor hoverColor(const QPalette &palette) const
     {
