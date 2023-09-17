@@ -4315,7 +4315,7 @@ bool Style::drawPanelMenuPrimitive(const QStyleOption *option, QPainter *painter
     const bool isTopMenu(widget != nullptr && widget->property(PropertyNames::isTopMenu).toBool());
     auto background(_helper->frameBackgroundColor(palette));
     // right click menu outline
-    auto outline(_helper->frameOutlineColor(palette));
+    auto outline(_helper->customFrameColor(palette));
 
     painter->save();
 
