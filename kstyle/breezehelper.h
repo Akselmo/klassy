@@ -54,7 +54,7 @@ public:
     //*@name color utilities
     //@{
 
-    QColor customOutlineColor(const QPalette &palette) const
+    QColor customRightClickMenuColor(const QPalette &palette) const
     {
         auto color = KStatefulBrush(KColorScheme::Button, KColorScheme::NormalBackground).brush(palette).color();
         return color;

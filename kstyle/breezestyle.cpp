@@ -3785,7 +3785,7 @@ bool Style::drawFrameMenuPrimitive(const QStyleOption *option, QPainter *painter
     if (qobject_cast<const QToolBar *>(widget)) {
         const auto &palette(option->palette);
         const auto background(_helper->frameBackgroundColor(palette));
-        const auto outline(_helper->customOutlineColor(palette));
+        const auto outline(_helper->frameOutlineColor(palette));
 
         const bool hasAlpha(_helper->hasAlphaChannel(widget));
         _helper->renderMenuFrame(painter, option->rect, background, outline, hasAlpha);
@@ -3793,7 +3793,7 @@ bool Style::drawFrameMenuPrimitive(const QStyleOption *option, QPainter *painter
     } else if (isQtQuickControl(option, widget)) {
         const auto &palette(option->palette);
         const auto background(_helper->frameBackgroundColor(palette));
-        const auto outline(_helper->customOutlineColor(palette));
+        const auto outline(_helper->frameOutlineColor(palette));
 
         const bool hasAlpha(_helper->hasAlphaChannel(widget));
         _helper->renderMenuFrame(painter, option->rect, background, outline, hasAlpha);
@@ -3819,7 +3819,7 @@ bool Style::drawFrameGroupBoxPrimitive(const QStyleOption *option, QPainter *pai
     // normal frame
     const auto &palette(option->palette);
     const auto background(_helper->frameBackgroundColor(palette));
-    const auto outline(_helper->customOutlineColor(palette));
+    const auto outline(_helper->frameOutlineColor(palette));
 
     /*
      * need to reset painter's clip region in order to paint behind textbox label
@@ -3927,7 +3927,7 @@ bool Style::drawFrameTabWidgetPrimitive(const QStyleOption *option, QPainter *pa
     // define colors
     const auto &palette(option->palette);
     const auto background(_helper->frameBackgroundColor(palette));
-    const auto outline(_helper->customOutlineColor(palette));
+    const auto outline(_helper->frameOutlineColor(palette));
     _helper->renderTabWidgetFrame(painter, rect, background, outline, corners);
 
     return true;
@@ -3946,7 +3946,7 @@ bool Style::drawFrameTabBarBasePrimitive(const QStyleOption *option, QPainter *p
 
     // get rect, orientation, palette
     const auto rect(option->rect);
-    const auto outline(_helper->customOutlineColor(option->palette));
+    const auto outline(_helper->frameOutlineColor(option->palette));
 
     // setup painter
     painter->setBrush(Qt::NoBrush);
@@ -4315,7 +4315,7 @@ bool Style::drawPanelMenuPrimitive(const QStyleOption *option, QPainter *painter
     const bool isTopMenu(widget != nullptr && widget->property(PropertyNames::isTopMenu).toBool());
     auto background(_helper->frameBackgroundColor(palette));
     // Right click menu outline color
-    auto outline(_helper->customOutlineColor(palette));
+    auto outline(_helper->customRightClickMenuColor(palette));
 
     painter->save();
 
@@ -4324,7 +4324,7 @@ bool Style::drawPanelMenuPrimitive(const QStyleOption *option, QPainter *painter
             painter->setCompositionMode(QPainter::CompositionMode_Source);
         }
         background.setAlphaF(StyleConfigData::menuOpacity() / 100.0);
-        outline = _helper->alphaColor(_helper->customOutlineColor(palette), 0.25);
+        outline = _helper->alphaColor(_helper->customRightClickMenuColor(palette), 0.25);
     }
 
     _helper->renderMenuFrame(painter, option->rect, background, outline, hasAlpha, isTopMenu);
