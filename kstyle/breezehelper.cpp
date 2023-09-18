@@ -1331,7 +1331,7 @@ void Helper::renderTabBarTab(QPainter *painter,
         } else {
             bgBrush = frameBackgroundColor(palette);
         }
-        QColor penBrush = KColorUtils::mix(bgBrush, palette.color(QPalette::WindowText), 0.25);
+        QColor penBrush = customOutlineColor(palette);
         painter->setBrush(bgBrush);
         painter->setPen(QPen(penBrush, PenWidth::Frame));
         QRectF highlightRect = frameRect;
