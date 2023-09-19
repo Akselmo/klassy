@@ -24,6 +24,7 @@ static constexpr int SmallArrowSize = 5;
 // frames
 static constexpr int Frame_FrameWidth = 2;
 static constexpr int Frame_FrameRadius = 3;
+static constexpr int RightClickMenu_Radius = 5;
 
 // layout
 static constexpr int Layout_TopLevelMarginWidth = 10;

@@ -56,7 +56,7 @@ public:
 
     QColor customRightClickMenuColor(const QPalette &palette) const
     {
-        auto color = KStatefulBrush(KColorScheme::Button, KColorScheme::NormalBackground).brush(palette).color();
+        auto color = palette.light().color();
         return color;
     }
     //* add alpha channel multiplier to color

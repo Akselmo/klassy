@@ -6,6 +6,7 @@
  */
 
 #include "breezehelper.h"
+#include "breezemetrics.h"
 
 #if KLASSY_STYLE_DEBUG_MODE
 #include "setqdebug_logging.h"
@@ -576,7 +577,7 @@ void Helper::renderMenuFrame(QPainter *painter, const QRect &rect, const QColor 
     if (roundCorners) {
         painter->setRenderHint(QPainter::Antialiasing);
         QRectF frameRect(rect);
-        qreal radius(frameRadius(PenWidth::NoPen));
+        qreal radius(Metrics::RightClickMenu_Radius);
 
         if (isTopMenu) {
             frameRect.adjust(0, -radius, 0, 0);
