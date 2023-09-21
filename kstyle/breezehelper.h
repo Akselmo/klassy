@@ -201,7 +201,13 @@ public:
     void renderSidePanelFrame(QPainter *, const QRect &, const QColor &outline, Side) const;
 
     //* menu frame
-    void renderMenuFrame(QPainter *, const QRect &, const QColor &color, const QColor &outline, bool roundCorners = true, bool isTopMenu = false) const;
+    void renderMenuFrame(QPainter *,
+                         const QRect &,
+                         const QColor &color,
+                         const QColor &outline,
+                         bool roundCorners = true,
+                         bool isTopMenu = false,
+                         bool blackOutline = false) const;
 
     //* button frame
     void renderButtonFrame(QPainter *painter,

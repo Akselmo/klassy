@@ -4327,7 +4327,7 @@ bool Style::drawPanelMenuPrimitive(const QStyleOption *option, QPainter *painter
         outline = _helper->alphaColor(_helper->customRightClickMenuColor(palette), 0.25);
     }
 
-    _helper->renderMenuFrame(painter, option->rect, background, outline, hasAlpha, isTopMenu);
+    _helper->renderMenuFrame(painter, option->rect, background, outline, hasAlpha, isTopMenu, true);
 
     painter->restore();
 

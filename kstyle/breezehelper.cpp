@@ -558,7 +558,13 @@ void Helper::renderSidePanelFrame(QPainter *painter, const QRect &rect, const QC
 }
 
 //______________________________________________________________________________
-void Helper::renderMenuFrame(QPainter *painter, const QRect &rect, const QColor &color, const QColor &outline, bool roundCorners, bool isTopMenu) const
+void Helper::renderMenuFrame(QPainter *painter,
+                             const QRect &rect,
+                             const QColor &color,
+                             const QColor &outline,
+                             bool roundCorners,
+                             bool isTopMenu,
+                             bool blackOutline) const
 {
     painter->save();
 
@@ -588,13 +594,17 @@ void Helper::renderMenuFrame(QPainter *painter, const QRect &rect, const QColor 
         if (outline.isValid()) {
             QRectF overFrameRect(belowFrameRect);
 
-            belowFrameRect = strokedRect(belowFrameRect, 2 * PenWidth::Frame);
-            overFrameRect = strokedRect(belowFrameRect, PenWidth::Frame);
+            belowFrameRect = strokedRect(belowFrameRect, blackOutline ? 2 * PenWidth::Frame : PenWidth::Frame);
             radius = frameRadiusForNewPenWidth(radius, PenWidth::Frame);
 
             // Draw black outline for the menu frames
-            painter->setPen(QColor(0, 0, 0));
-            painter->drawRoundedRect(belowFrameRect, radius, radius);
+            if (blackOutline) {
+                overFrameRect = strokedRect(belowFrameRect, PenWidth::Frame);
+                painter->setPen(QColor(0, 0, 0));
+                painter->drawRoundedRect(belowFrameRect, radius, radius);
+            } else {
+                overFrameRect = strokedRect(overFrameRect, PenWidth::Frame);
+            }
 
             painter->setPen(outline);
             painter->drawRoundedRect(overFrameRect, radius, radius);
