@@ -7,6 +7,7 @@
 
 #include "breezehelper.h"
 #include "breezemetrics.h"
+#include <qcolor.h>
 
 #if KLASSY_STYLE_DEBUG_MODE
 #include "setqdebug_logging.h"
@@ -576,25 +577,32 @@ void Helper::renderMenuFrame(QPainter *painter, const QRect &rect, const QColor 
 
     if (roundCorners) {
         painter->setRenderHint(QPainter::Antialiasing);
-        QRectF frameRect(rect);
+        QRectF belowFrameRect(rect);
         qreal radius(Metrics::RightClickMenu_Radius);
 
         if (isTopMenu) {
-            frameRect.adjust(0, -radius, 0, 0);
+            belowFrameRect.adjust(0, -radius, 0, 0);
         }
 
         // set pen
         if (outline.isValid()) {
-            painter->setPen(outline);
-            frameRect = strokedRect(frameRect);
+            QRectF overFrameRect(belowFrameRect);
+
+            belowFrameRect = strokedRect(belowFrameRect, 2 * PenWidth::Frame);
+            overFrameRect = strokedRect(belowFrameRect, PenWidth::Frame);
             radius = frameRadiusForNewPenWidth(radius, PenWidth::Frame);
+
+            // Draw black outline for the menu frames
+            painter->setPen(QColor(0, 0, 0));
+            painter->drawRoundedRect(belowFrameRect, radius, radius);
+
+            painter->setPen(outline);
+            painter->drawRoundedRect(overFrameRect, radius, radius);
 
         } else {
             painter->setPen(Qt::NoPen);
+            painter->drawRoundedRect(belowFrameRect, radius, radius);
         }
-
-        // render
-        painter->drawRoundedRect(frameRect, radius, radius);
 
     } else {
         painter->setRenderHint(QPainter::Antialiasing, false);
